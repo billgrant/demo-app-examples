@@ -62,6 +62,19 @@ After `terraform apply`:
 
 The display panel demonstrates: "Terraform can fetch data from this app and post it back."
 
+## Design Decision: Ignore Changes on Display
+
+The `demoapp_display` resource uses `lifecycle { ignore_changes = [data] }` by default.
+
+**Why:** Terraform is the persistence layer for this stateless app. If the app crashes mid-demo:
+1. Restart the container
+2. Run `terraform apply`
+3. The *same* data is restored from Terraform state
+
+Without `ignore_changes`, Terraform would fetch *new* data on each apply — which might have changed or become unavailable (breaking your demo).
+
+**To opt out:** Remove the `lifecycle` block if you want the display to update with fresh data on every apply.
+
 ## Outputs
 
 | Output | Description |

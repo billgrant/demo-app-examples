@@ -47,6 +47,7 @@ resource "docker_container" "demo_app" {
     interval = "2s"
     timeout  = "2s"
     retries  = 10
+    start_period = "5s"
   }
 
   # Wait for container to be running before marking as created
@@ -94,6 +95,15 @@ resource "demoapp_display" "system_snapshot" {
     captured_at      = timestamp()
     system_info      = jsondecode(data.http.system_info.response_body)
   })
+
+  # Ignore changes to data after initial creation.
+  # Why: Terraform is the persistence layer for this stateless app. If the app
+  # crashes and restarts, we want `terraform apply` to restore the SAME data,
+  # not fetch new data that might have changed or become unavailable.
+  # Remove this block if you want the display to update on every apply.
+  lifecycle {
+    ignore_changes = [data]
+  }
 }
 
 # Create some example items to show the app is functional
