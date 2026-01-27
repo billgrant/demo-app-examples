@@ -27,28 +27,8 @@ All examples require:
 
 - [Terraform](https://www.terraform.io/downloads.html) >= 1.0
 - [Docker](https://docs.docker.com/get-docker/) (for container-based examples)
-- [Demo-app](https://github.com/billgrant/demo-app) container image
 
-### Building the Demo-App Image
-
-```bash
-git clone https://github.com/billgrant/demo-app.git
-cd demo-app
-docker build -t demo-app:latest .
-```
-
-### DemoApp Provider Setup
-
-Until the provider is published to the Terraform Registry, configure a dev override in `~/.terraformrc`:
-
-```hcl
-provider_installation {
-  dev_overrides {
-    "billgrant/demoapp" = "/path/to/terraform-provider-demoapp"
-  }
-  direct {}
-}
-```
+That's it. The [DemoApp provider](https://registry.terraform.io/providers/billgrant/demoapp/latest) is installed automatically by `terraform init`, and the container image is pulled from `ghcr.io/billgrant/demo-app` during `terraform apply`.
 
 ## Quick Start
 

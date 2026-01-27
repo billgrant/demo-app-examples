@@ -13,7 +13,8 @@ terraform {
       version = "~> 0.9"
     }
     demoapp = {
-      source = "billgrant/demoapp"
+      source  = "billgrant/demoapp"
+      version = "~> 0.1"
     }
   }
 }
@@ -24,11 +25,9 @@ terraform {
 
 provider "docker" {}
 
-# Pull the demo-app image (assumes it's built locally or available)
-# For local dev: docker build -t demo-app:latest ~/code/demo-app
+# Pull the demo-app image from GitHub Container Registry
 resource "docker_image" "demo_app" {
-  name         = "demo-app:latest"
-  keep_locally = true
+  name = "ghcr.io/billgrant/demo-app:latest"
 }
 
 # Run the container
