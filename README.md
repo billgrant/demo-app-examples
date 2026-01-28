@@ -13,6 +13,7 @@ Each example is self-contained and runs with a single `terraform apply`.
 | Example | Description | Providers Used |
 |---------|-------------|----------------|
 | [baseline](./baseline/) | Local Docker deployment with data flow demo | Docker, HTTP, DemoApp |
+| [azure-baseline](./azure-baseline/) | Azure Container Instances deployment | Azure, HTTP, DemoApp |
 
 ### Coming Soon
 
@@ -23,12 +24,14 @@ Each example is self-contained and runs with a single `terraform apply`.
 
 ## Prerequisites
 
-All examples require:
-
+**All examples require:**
 - [Terraform](https://www.terraform.io/downloads.html) >= 1.0
-- [Docker](https://docs.docker.com/get-docker/) (for container-based examples)
 
-That's it. The [DemoApp provider](https://registry.terraform.io/providers/billgrant/demoapp/latest) is installed automatically by `terraform init`, and the container image is pulled from `ghcr.io/billgrant/demo-app` during `terraform apply`.
+**Additional requirements by example:**
+- **baseline**: [Docker](https://docs.docker.com/get-docker/)
+- **azure-baseline**: [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (authenticated with `az login`)
+
+The [DemoApp provider](https://registry.terraform.io/providers/billgrant/demoapp/latest) is installed automatically by `terraform init`, and the container image is pulled from `ghcr.io/billgrant/demo-app` during `terraform apply`.
 
 ## Quick Start
 
