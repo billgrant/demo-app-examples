@@ -9,11 +9,6 @@ A single `terraform apply` that demonstrates the demo-app ecosystem:
 ## Prerequisites
 
 - Docker running locally
-- Demo-app container image built:
-  ```bash
-  cd ~/code/demo-app
-  docker build -t demo-app:latest .
-  ```
 - Terraform >= 1.0
 
 ## Usage
