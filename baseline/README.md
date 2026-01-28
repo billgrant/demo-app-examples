@@ -15,7 +15,6 @@ A single `terraform apply` that demonstrates the demo-app ecosystem:
   docker build -t demo-app:latest .
   ```
 - Terraform >= 1.0
-- DemoApp provider dev override configured (see main repo README)
 
 ## Usage
 
